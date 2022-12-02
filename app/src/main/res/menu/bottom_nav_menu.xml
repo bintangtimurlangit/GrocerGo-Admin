@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/tracking"
+        android:title="@string/tracking"
+        android:icon="@drawable/ic_tracking" />
+    <item android:id="@+id/courier"
+        android:title="@string/courier"
+        android:icon="@drawable/ic_courier" />
+    <item android:id="@+id/supplystock"
+        android:title="@string/supplyStock"
+        android:icon="@drawable/ic_tracking" />
+    <item android:id="@+id/settings"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_setting" />
+</menu>
