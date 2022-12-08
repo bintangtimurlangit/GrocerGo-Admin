@@ -15,4 +15,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="trackingStatus">Tracking Status</string>
+    <string name="current_tracking_status">Current Tracking Status:</string>
+    <string name="box">Box</string>
+    <string name="delivered">Delivered</string>
+    <string name="on_going_order">On-going Order</string>
+    <string name="delivered_order">Delivered Order</string>
 </resources>

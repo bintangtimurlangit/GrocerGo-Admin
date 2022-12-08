@@ -20,7 +20,6 @@ public class RequestHandler {
         if(mInstance == null) {
             mInstance = new RequestHandler(context);
         }
-
         return mInstance;
     }
 
@@ -28,7 +27,6 @@ public class RequestHandler {
         if(mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }
-
         return mRequestQueue;
     }
 

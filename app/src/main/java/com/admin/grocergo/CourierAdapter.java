@@ -134,7 +134,6 @@ public class CourierAdapter extends RecyclerView.Adapter<CourierAdapter.ViewHold
                                         dialogInterface.dismiss();
                                     }
                                 });
-
                                 builderDel.create().show();
                                 break;
                         }
