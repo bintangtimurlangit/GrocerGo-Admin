@@ -24,7 +24,8 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/courier_name_text"
+                android:text="Bintang Timurlangit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
@@ -32,7 +33,8 @@
                 android:textColor="#2196f3"/>
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/courier_phone_text"
+                android:text="08987480857"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
@@ -48,7 +50,8 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/id"
+                        android:id="@+id/courier_id_text"
+                        android:text="7782373"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10dp" android:textColor="#aeaeae"/>

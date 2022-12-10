@@ -1,6 +1,5 @@
 package com.admin.grocergo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
         // Spinner Navigation Set
-        spinner = (Spinner)findViewById(R.id.spinnerDropdownTracking);
+        spinner = (Spinner) findViewById(R.id.spinnerDropdownTracking);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_spinner_item, paths);
 

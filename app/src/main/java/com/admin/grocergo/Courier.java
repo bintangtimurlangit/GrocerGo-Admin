@@ -1,133 +1,140 @@
 package com.admin.grocergo;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Courier extends AppCompatActivity {
-    public static Courier ma;
-    List<CourierModel> courierListItems;
-    private RecyclerView courierRecyclerView;
-    private RecyclerView.Adapter courierAdapter;
+    RecyclerView courierRecyclerView;
+    RecyclerView.LayoutManager courierLayoutManager;
+    CourierAdapter courierAdapter;
+    ArrayList<CourierModel> courierArrayList = new ArrayList<>();
+    String COURIER_DATA_JSON_STRING, courier_data_json_string;
     ProgressDialog progressDialog;
+    int countData = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courier);
 
-        // Init
         courierRecyclerView = (RecyclerView) findViewById(R.id.courierList);
-        courierRecyclerView.setLayoutManager(new LinearLayoutManager(Courier.this));
-        progressDialog = new ProgressDialog(this);
-        courierListItems = new ArrayList<>();
-        ma = this;
-        courierRefreshList();
+        courierLayoutManager = new LinearLayoutManager(this);
+        courierRecyclerView.setLayoutManager(courierLayoutManager);
+        courierRecyclerView.setHasFixedSize(true);
+        courierAdapter = new CourierAdapter(courierArrayList);
+        courierRecyclerView.setAdapter(courierAdapter);
+        progressDialog = new ProgressDialog(Courier.this);
 
-        // Bottom Navigation Set
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.courier);
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        // Read Data
+        getJSON();
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.tracking:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.courier:
-                        return true;
-
-                    case R.id.supplystock:
-                        startActivity(new Intent(getApplicationContext(), SupplyStock.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.settings:
-                        startActivity(new Intent(getApplicationContext(), Settings.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
+            public void run() {
+                readCourierData();
             }
-        });
+        }, 1000);
     }
 
-    public void courierRefreshList(){
-        courierListItems.clear();
-        courierAdapter = new CourierAdapter(courierListItems, getApplicationContext());
-        courierRecyclerView.setAdapter(courierAdapter);
-        Toast.makeText(Courier.this, "CourierAdapter has been set", Toast.LENGTH_SHORT).show();
+    public void getJSON() {
+        new BackgroundTask().execute();
+    }
 
-        courierRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        progressDialog.setMessage("Loading");
-        progressDialog.show();
+    public boolean checkNetworkConnection() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
+    }
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constants.URL_SELECT_COURIER, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                progressDialog.dismiss();
-                // Toast.makeText(Courier.this, "Checkpoint 1", Toast.LENGTH_SHORT).show();
-                try {
-                    progressDialog.hide();
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+    public void readCourierData() {
+        if(checkNetworkConnection()) {
+            courierArrayList.clear();
+            try {
+                JSONObject object = new JSONObject(courier_data_json_string);
+                JSONArray serverResponse = object.getJSONArray("server_response");
+                String courier_id, courier_name, courier_phone;
 
-                    Toast.makeText(Courier.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-                    for (int i = 0; i < jsonArray.length(); i++){
-                        JSONObject o = jsonArray.getJSONObject(i);
-                        CourierModel item = new CourierModel(
-                                o.getString("id"),
-                                o.getString("name"),
-                                o.getString("phone")
-                        );
+                while(countData < serverResponse.length()) {
+                    JSONObject jsonObject = serverResponse.getJSONObject(countData);
+                    courier_id = jsonObject.getString("courier_id");
+                    courier_name = jsonObject.getString("courier_name");
+                    courier_phone = jsonObject.getString("courier_phone");
 
-                        courierListItems.add(item);
-                        courierAdapter = new CourierAdapter(courierListItems, getApplicationContext());
-                        courierRecyclerView.setAdapter(courierAdapter);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    courierArrayList.add(new CourierModel(courier_id, courier_name, courier_phone));
+                    countData++;
                 }
+                countData = 0;
+                courierAdapter.notifyDataSetChanged();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.hide();
-                Toast.makeText(Courier.this, "Failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    class BackgroundTask extends AsyncTask<Void, Void, String> {
+        String json_url;
+
+        @Override
+        protected void onPreExecute() {
+            json_url = DBConstants.SERVER_GET_URL;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                URL url = new URL(json_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((COURIER_DATA_JSON_STRING = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(COURIER_DATA_JSON_STRING + "\n");
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return  stringBuilder.toString().trim();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }){
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("name", "kl");
-                return params;
-            }
-        };
-        RequestHandler.getInstance(Courier.this).addToRequestQueue(stringRequest);
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            courier_data_json_string = result;
+        }
     }
 }

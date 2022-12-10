@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity {
                             data[0] = username;
                             data[1] = password;
 
-                            PutData putData = new PutData("http://192.168.0.109/grocergo/login.php", "POST", field, data);
+                            PutData putData = new PutData("http://192.168.1.148/grocergo/login.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     String result = putData.getResult();
