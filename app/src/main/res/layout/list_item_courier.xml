@@ -8,65 +8,70 @@
     android:paddingRight="10dp"
     android:paddingTop="3dp"
     android:paddingBottom="3dp">
-
-    <androidx.cardview.widget.CardView
+    
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        android:elevation="14dp"
-        android:id="@+id/card_view"
-        android:layout_marginBottom="2dp">
+        android:layout_height="match_parent" >
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/courier_name_text"
-                android:text="Bintang Timurlangit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="3dp"
-                android:textSize="16dp"
-                android:textColor="#2196f3"/>
-
-            <TextView
-                android:id="@+id/courier_phone_text"
-                android:text="08987480857"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:textColor="#878586"/>
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            android:elevation="14dp"
+            android:id="@+id/card_view"
+            android:layout_marginBottom="2dp">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:padding="8dp">
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/courier_name_text"
+                    android:text="Bintang Timurlangit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="16dp"
+                    android:textColor="#2196f3"/>
+
+                <TextView
+                    android:id="@+id/courier_phone_text"
+                    android:text="08987480857"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:textColor="#878586"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/courier_id_text"
-                        android:text="7782373"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10dp" android:textColor="#aeaeae"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:visibility="invisible"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10dp"
-                        android:textColor="#aeaeae"/>
+                        <TextView
+                            android:id="@+id/courier_id_text"
+                            android:text="7782373"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10dp" android:textColor="#aeaeae"/>
 
-                </RelativeLayout>
+                        <TextView
+                            android:visibility="invisible"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10dp"
+                            android:textColor="#aeaeae"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
 </LinearLayout>

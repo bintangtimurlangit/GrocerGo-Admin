@@ -2,15 +2,22 @@ package com.admin.grocergo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +33,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Courier extends AppCompatActivity {
+    Button addNewCourierButton;
     RecyclerView courierRecyclerView;
     RecyclerView.LayoutManager courierLayoutManager;
     CourierAdapter courierAdapter;
@@ -46,6 +54,44 @@ public class Courier extends AppCompatActivity {
         courierAdapter = new CourierAdapter(courierArrayList);
         courierRecyclerView.setAdapter(courierAdapter);
         progressDialog = new ProgressDialog(Courier.this);
+        addNewCourierButton = findViewById(R.id.addCourierBtn);
+
+        addNewCourierButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Courier.this, CourierAdd.class);
+                startActivity(intent);
+            }
+        });
+
+        // Bottom Navigation Set
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.courier);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.tracking:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.courier:
+                        return true;
+
+                    case R.id.supplystock:
+                        startActivity(new Intent(getApplicationContext(), SupplyStock.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.settings:
+                        startActivity(new Intent(getApplicationContext(), Settings.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         // Read Data
         getJSON();
@@ -98,7 +144,7 @@ public class Courier extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            json_url = DBConstants.SERVER_GET_URL;
+            json_url = DBConstants.SERVER_GET_URL_COURIER;
         }
 
         @Override

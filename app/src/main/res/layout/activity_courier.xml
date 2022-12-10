@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,20 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="@string/supplyStock"
+        android:text="@string/courier"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/courierList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
-        android:layout_marginBottom="75dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="200dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -35,8 +31,19 @@
         app:labelVisibilityMode="unlabeled"
         app:itemIconSize="50dp"
         app:menu="@menu/bottom_nav_menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_alignParentBottom="true" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/addCourierBtn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_alignBottom="@id/courierList"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-90dp"
+        android:background="@drawable/rounded_button_brown"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Add Courier"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+</RelativeLayout>
