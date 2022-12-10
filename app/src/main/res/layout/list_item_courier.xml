@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="4dp"
             android:elevation="14dp"
-            android:id="@+id/card_view"
+            android:id="@+id/courierCardView"
             android:layout_marginBottom="2dp">
 
             <LinearLayout

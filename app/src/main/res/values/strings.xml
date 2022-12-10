@@ -26,4 +26,7 @@
     <string name="insert_data">Insert Data</string>
     <string name="cancel_add">Cancel Add</string>
     <string name="supplier">Supplier</string>
+    <string name="update_courier">Update Courier</string>
+    <string name="update_data">Update Data</string>
+    <string name="cancel_update">Cancel Update</string>
 </resources>
