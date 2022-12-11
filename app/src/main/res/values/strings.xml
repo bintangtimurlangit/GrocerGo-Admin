@@ -29,4 +29,14 @@
     <string name="update_courier">Update Courier</string>
     <string name="update_data">Update Data</string>
     <string name="cancel_update">Cancel Update</string>
+    <string name="add_supplier">Add Supplier</string>
+    <string name="bintang_timurlangit_gmail_com">bintang.timurlangit@gmail.com</string>
+    <string name="_70001_bayam">70001 - Bayam</string>
+    <string name="bintang_timurlangit">Bintang Timurlangit</string>
+    <string name="add_new_inventory">Add New Inventory</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="item_id">Item ID</string>
+    <string name="item_price">Item Price</string>
+    <string name="item_stock">Item Stock</string>
+    <string name="item_image">Item Image:</string>
 </resources>
