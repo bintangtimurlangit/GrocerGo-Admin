@@ -39,4 +39,20 @@
     <string name="item_price">Item Price</string>
     <string name="item_stock">Item Stock</string>
     <string name="item_image">Item Image:</string>
+    <string name="title_activity_tracking_view_payment_confirmation">
+        TrackingViewPaymentConfirmation
+    </string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="item_list">Item List</string>
+    <string name="sisa_barang_5">Sisa Barang: 5</string>
+    <string name="rp_17_000_00">Rp. 17.000,00</string>
+    <string name="add_new_inventory_alt">Add New Inventory</string>
+    <string name="payment_confirmation">Payment Confirmation</string>
 </resources>

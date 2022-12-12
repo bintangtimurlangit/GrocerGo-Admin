@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Button buttonView;
     private Spinner spinner;
     private static final String[] paths = {
+            "Payment Confirmation",
             "Preparing",
             "On Going",
             "Delivered"
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             case 2:
                 selector = 3;
+                Toast.makeText(MainActivity.this, "Selector: " + selector, Toast.LENGTH_SHORT).show();
+                break;
+
+            case 3:
+                selector = 4;
                 Toast.makeText(MainActivity.this, "Selector: " + selector, Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -67,20 +73,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 switch(selector) {
                     case 1:
                         Toast.makeText(MainActivity.this, "Selector: " + selector, Toast.LENGTH_SHORT).show();
-                        Intent myIntent = new Intent(MainActivity.this, TrackingViewPreparing.class);
+                        Intent myIntent = new Intent(MainActivity.this, TrackingPaymentConfirmation.class);
                         MainActivity.this.startActivity(myIntent);
                         break;
 
                     case 2:
                         Toast.makeText(MainActivity.this, "Selector: " + selector, Toast.LENGTH_SHORT).show();
-                        Intent myIntent2 = new Intent(MainActivity.this, TrackingViewOngoing.class);
+                        Intent myIntent2 = new Intent(MainActivity.this, TrackingViewPreparing.class);
                         MainActivity.this.startActivity(myIntent2);
                         break;
 
                     case 3:
                         Toast.makeText(MainActivity.this, "Selector: " + selector, Toast.LENGTH_SHORT).show();
-                        Intent myIntent3 = new Intent(MainActivity.this, TrackingViewDelivered.class);
+                        Intent myIntent3 = new Intent(MainActivity.this, TrackingViewOngoing.class);
                         MainActivity.this.startActivity(myIntent3);
+                        break;
+
+                    case 4:
+                        Toast.makeText(MainActivity.this, "Selector: " + selector, Toast.LENGTH_SHORT).show();
+                        Intent myIntent4 = new Intent(MainActivity.this, TrackingViewDelivered.class);
+                        MainActivity.this.startActivity(myIntent4);
                         break;
 
                     default:

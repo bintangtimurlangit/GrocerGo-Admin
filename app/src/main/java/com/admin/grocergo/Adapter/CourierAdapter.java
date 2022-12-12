@@ -1,4 +1,4 @@
-package com.admin.grocergo;
+package com.admin.grocergo.Adapter;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -11,6 +11,11 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.admin.grocergo.CourierDeleteData;
+import com.admin.grocergo.CourierEditData;
+import com.admin.grocergo.CourierModel;
+import com.admin.grocergo.R;
 
 import java.util.ArrayList;
 

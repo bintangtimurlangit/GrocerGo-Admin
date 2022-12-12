@@ -1,7 +1,7 @@
 package com.admin.grocergo;
 
 public class DBConstants {
-    public static final String URL = "http://192.168.31.69/";
+    public static final String URL = "http://192.168.1.148/";
     public static final String ROOT_URL_TRACKING = URL + "grocergo/crud_api/tracking/";
     public static final String ROOT_URL_COURIER = URL + "grocergo/crud_api/courier/";
     public static final String ROOT_URL_SUPPLIER = URL + "grocergo/crud_api/supplier/";

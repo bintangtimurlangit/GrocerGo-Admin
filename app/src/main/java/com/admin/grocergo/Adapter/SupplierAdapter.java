@@ -1,4 +1,4 @@
-package com.admin.grocergo;
+package com.admin.grocergo.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.admin.grocergo.R;
+import com.admin.grocergo.SupplierModel;
 
 import java.util.ArrayList;
 
