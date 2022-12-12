@@ -56,7 +56,7 @@ public class Supplier extends AppCompatActivity {
         addNewSupplyStockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Supplier.this, SupplyStock.class);
+                Intent intent = new Intent(Supplier.this, SupplyStockAdd.class);
                 startActivity(intent);
             }
         });
@@ -83,17 +83,17 @@ public class Supplier extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(supplier_data_json_string);
                 JSONArray serverResponse = object.getJSONArray("server_response");
-                String supplier_id, supplier_name, supplier_phone, item_id, item_name;
+                String supplier_id, supplier_name, supplier_email, item_id, item_name;
 
                 while(countData < serverResponse.length()) {
                     JSONObject jsonObject = serverResponse.getJSONObject(countData);
                     supplier_id = jsonObject.getString("supplier_id");
                     supplier_name = jsonObject.getString("supplier_name");
-                    supplier_phone = jsonObject.getString("supplier_phone");
+                    supplier_email = jsonObject.getString("supplier_email");
                     item_id = jsonObject.getString("item_id");
                     item_name = jsonObject.getString("item_name");
 
-                    supplierArrayList.add(new SupplierModel(supplier_id, supplier_name, supplier_phone, item_id, item_name));
+                    supplierArrayList.add(new SupplierModel(supplier_id, supplier_name, supplier_email, item_id, item_name));
                     countData++;
                 }
                 countData = 0;

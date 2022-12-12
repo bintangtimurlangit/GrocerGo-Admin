@@ -70,7 +70,7 @@ public class CourierAdd extends AppCompatActivity {
                     valid = false;
                 } else {
                     valid = true;
-                    if(TextUtils.isEmpty(courier_name)) {
+                    if(TextUtils.isEmpty(courier_phone)) {
                         courierPhone.setError("Courier phone cannot be empty!");
                         valid = false;
                     } else {
@@ -79,7 +79,7 @@ public class CourierAdd extends AppCompatActivity {
                 }
 
                 if(valid) {
-                    progressDialog.setMessage("LOADING");
+                    progressDialog.setMessage("Loading");
                     progressDialog.show();
                     createCourierData(courier_id, courier_name, courier_phone);
                 }
@@ -141,7 +141,7 @@ public class CourierAdd extends AppCompatActivity {
                                 String resp = jsonObject.getString("server_response");
                                 if (resp.equals("OK")) {
                                     getJSON();
-                                    Toast.makeText(getApplicationContext(), "DATA SUCCESSFULLY INSERTED!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Data successfully inserted!", Toast.LENGTH_SHORT).show();
                                 } else {
                                     getJSON();
                                     Toast.makeText(getApplicationContext(), resp, Toast.LENGTH_SHORT).show();
@@ -154,7 +154,7 @@ public class CourierAdd extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     getJSON();
-                    Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
                 }
             }) {
                 @Override
@@ -174,7 +174,7 @@ public class CourierAdd extends AppCompatActivity {
             finish();
 
         } else {
-            Toast.makeText(getApplicationContext(), "No Connection to Database!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No connection to database!", Toast.LENGTH_SHORT).show();
         }
     }
 
