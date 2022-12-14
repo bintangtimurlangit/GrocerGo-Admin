@@ -59,12 +59,12 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
                             case 1:
                                 AlertDialog.Builder builderCourierDelete = new AlertDialog.Builder(v.getContext());
                                 builderCourierDelete.setTitle("Delete " + StockArray.getItem_name());
-                                builderCourierDelete.setMessage("Are you sure, you want to delete data?");
+                                builderCourierDelete.setMessage("Are you sure, you want to delete " + StockArray.getItem_id());
                                 builderCourierDelete.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent2 = new Intent(v.getContext(), SupplyStockDeleteData.class);
-                                        intent2.putExtra("courier_id", StockArray.getItem_id());
+                                        intent2.putExtra("item_id", StockArray.getItem_id());
                                         v.getContext().startActivity(intent2);
                                     }
                                 });
@@ -102,6 +102,5 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
 
             stockCardView = (CardView) itemView.findViewById(R.id.itemCardView);
         }
-
     }
 }

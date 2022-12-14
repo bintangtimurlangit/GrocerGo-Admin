@@ -95,7 +95,7 @@ public class CourierDeleteData extends AppCompatActivity {
 
             VolleySingleton.getInstance(CourierDeleteData.this).addToRequestQue(stringRequest);
         } else {
-            Toast.makeText(getApplicationContext(), "No Connection to Database!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No connection to database!", Toast.LENGTH_SHORT).show();
         }
     }
 

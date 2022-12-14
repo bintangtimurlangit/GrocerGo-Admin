@@ -1,7 +1,7 @@
 package com.admin.grocergo;
 
 public class DBConstants {
-    public static final String URL = "http://192.168.1.148/";
+    public static final String URL = "http://192.168.31.69/";
     public static final String ROOT_URL_TRACKING = URL + "grocergo/crud_api/tracking/";
     public static final String ROOT_URL_COURIER = URL + "grocergo/crud_api/courier/";
     public static final String ROOT_URL_SUPPLIER = URL + "grocergo/crud_api/supplier/";
@@ -42,5 +42,6 @@ public class DBConstants {
     public static final String SERVER_GET_URL_SUPPLYSTOCK = ROOT_URL_SUPPLYSTOCK + "readData.php";
     public static final String SERVER_POST_URL_SUPPLYSTOCK = ROOT_URL_SUPPLYSTOCK + "createData.php";
     public static final String SERVER_PUT_URL_SUPPLYSTOCK = ROOT_URL_SUPPLYSTOCK + "updateData.php";
+    public static final String SERVER_UPLOADIMG_URL_SUPPLYSTOCK = ROOT_URL_SUPPLYSTOCK + "uploadImage.php";
     public static final String SERVER_DELETE_URL_SUPPLYSTOCK = ROOT_URL_SUPPLYSTOCK + "deleteData.php";
 }

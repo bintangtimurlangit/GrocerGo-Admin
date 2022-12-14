@@ -164,6 +164,12 @@
                 android:enabled="true"
                 android:backgroundTint="@color/brown" />
 
+            <ImageView
+                android:id="@+id/itemImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
             <Button
                 android:id="@+id/insertBtn"
                 android:layout_width="match_parent"
